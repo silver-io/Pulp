@@ -32,3 +32,20 @@ describe 'creating restaurants' do
   expect(current_path).to eq '/restaurants'
  end
 end
+
+context 'editing restaurants' do
+
+  before do
+    Restaurant.create(name:'Cygnet')
+  end
+
+  it 'lets a user edit a restaurant' do
+   visit '/restaurants'
+   click_link 'Edit Cygnet'
+   fill_in 'Name', with: 'Cygnet'
+   click_button 'Update Restaurant'
+   expect(page).to have_content 'Cygnet'
+   expect(current_path).to eq '/restaurants'
+  end
+
+end
