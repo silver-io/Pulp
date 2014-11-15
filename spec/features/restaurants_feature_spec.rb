@@ -61,5 +61,19 @@ describe 'deleting restaurants' do
     expect(page).not_to have_content 'Cygnet'
     expect(page).to have_content 'Restaurant deleted successfully'
   end
+end
+
+context 'viewing restaurants' do
+
+  before do
+    Restaurant.create(name:'Cygnet', description: "Great Burgers")
+  end
+
+  it 'lets a user view a restaurant and its description' do
+   visit '/restaurants'
+   click_link 'Show Cygnet'
+   expect(page).to have_content("Great Burgers")
+   expect(current_path).to match(/restaurants\/\d/)
+  end
 
 end
