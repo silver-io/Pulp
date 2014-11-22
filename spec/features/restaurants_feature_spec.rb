@@ -23,43 +23,45 @@ describe 'restaurants' do
 end
 
 describe 'creating restaurants' do
- it 'prompts user to fill out a form, then displays the new restaurant' do
-  visit '/restaurants'
-  click_link 'Add a restaurant'
-  fill_in 'Name', with: 'Cygnet'
-  click_button 'Create Restaurant'
-  expect(page).to have_content 'Cygnet'
-  expect(current_path).to eq '/restaurants'
- end
+    context 'valid restaurants' do
+      it 'prompts user to fill out a form, then displays the new restaurant' do
+      visit '/restaurants'
+      click_link 'Add a restaurant'
+      fill_in 'Name', with: 'Cygnet'
+      click_button 'Create Restaurant'
+      expect(page).to have_content 'Cygnet'
+      expect(current_path).to eq '/restaurants'
+      end
+    end
 end
 
-context 'invalid restaurants' do
-  it 'does not let you submit a name that is too short' do
-    visit '/restaurants'
-    click_link 'Add a restaurant'
-    fill_in 'Name', with: 'PP'
-    click_button 'Create Restaurant'
-    expect(page).not_to have_css 'h2', text: 'kf'
-    expect(page).to have_content 'error'
-  end
-end
-
-
-context 'editing restaurants' do
-
-  before do
-    Restaurant.create(name:'Cygnet')
+  context 'invalid restaurants' do
+    it 'does not let you submit a name that is too short' do
+      visit '/restaurants'
+      click_link 'Add a restaurant'
+      fill_in 'Name', with: 'PP'
+      click_button 'Create Restaurant'
+      expect(page).not_to have_css 'h2', text: 'PP'
+      expect(page).to have_content 'errors'
+    end
   end
 
-  it 'lets a user edit a restaurant' do
-   visit '/restaurants'
-   click_link 'Edit Cygnet'
-   fill_in 'Name', with: 'Cygnet'
-   click_button 'Update Restaurant'
-   expect(page).to have_content 'Cygnet'
-   expect(current_path).to eq '/restaurants'
+
+  context 'editing restaurants' do
+
+    before do
+      Restaurant.create(name:'Cygnet')
+    end
+
+    it 'lets a user edit a restaurant' do
+     visit '/restaurants'
+     click_link 'Edit Cygnet'
+     fill_in 'Name', with: 'Cygnet'
+     click_button 'Update Restaurant'
+     expect(page).to have_content 'Cygnet'
+     expect(current_path).to eq '/restaurants'
+    end
   end
-end
 
 describe 'deleting restaurants' do
 
