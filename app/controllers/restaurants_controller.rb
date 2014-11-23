@@ -29,6 +29,7 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params[:id])
     @restaurant.update(restaurant_params)
     redirect_to restaurants_path
+    # redirect_to '/restaurants'
   end
 
   def destroy
