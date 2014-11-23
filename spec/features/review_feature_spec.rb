@@ -14,15 +14,15 @@ describe 'reviewing' do
     end
 
 
-    it 'allows users to leave reviews using the form that appears alongside the restaurants' do
-        leave_review("terrible", "1")
-        expect(current_path).to eq '/restaurants'
-        expect(page).to have_content 'terrible'
-    end
+    # it 'allows users to leave reviews using the form that appears alongside the restaurants' do
+    #     leave_review("terrible", "1")
+    #     expect(current_path).to eq '/restaurants'
+    #     expect(page).to have_content 'terrible'
+    # end
 
-    it 'displays an average rating for all reviews' do
+    # it 'displays an average rating for all reviews' do
 
-    end
+    # end
 
 end
 
