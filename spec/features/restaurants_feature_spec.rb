@@ -46,9 +46,7 @@ end
     end
   end
 
-
-  context 'editing restaurants' do
-
+context 'editing restaurants' do
     before do
       Restaurant.create(name:'Cygnet')
     end
