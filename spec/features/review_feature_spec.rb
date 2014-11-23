@@ -5,14 +5,24 @@ describe 'reviewing' do
         Restaurant.create(name: 'Cygnet')
     end
 
-    it 'allows users to leave reviews using the form that appears alongside the restaurants' do
+    def leave_review(thoughts, rating)
         visit '/restaurants'
         click_link 'Review Cygnet'
-        fill_in "Thoughts", with: "ok"
-        select '3', from:'Rating'
+        fill_in "Thoughts", with: thoughts
+        select rating, from:'Rating'
         click_button 'Leave Review'
-        expect(current_path).to eq '/restaurants'
-        expect(page).to have_content 'ok'
     end
+
+
+    it 'allows users to leave reviews using the form that appears alongside the restaurants' do
+        leave_review("terrible", "1")
+        expect(current_path).to eq '/restaurants'
+        expect(page).to have_content 'terrible'
+    end
+
+    it 'displays an average rating for all reviews' do
+
+    end
+
 end
 
