@@ -42,7 +42,7 @@ end
       fill_in 'Name', with: 'PP'
       click_button 'Create Restaurant'
       expect(page).not_to have_css 'h2', text: 'PP'
-      expect(page).to have_content 'error'
+      expect(page).to have_content 'errors'
     end
   end
 
